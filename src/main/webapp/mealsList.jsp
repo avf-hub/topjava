@@ -13,16 +13,20 @@
 <p><a href="meals?action=add">Add Meal</a></p>
 <table>
     <tr>
-        <th>Date</th><th>Description</th><th>Calories</th><th></th><th></th>
+        <th>Date</th>
+        <th>Description</th>
+        <th>Calories</th>
+        <th></th>
+        <th></th>
     </tr>
-    <c:forEach var="meal" items="${meals}" varStatus="loop">
+    <c:forEach var="meal" items="${meals}">
         <jsp:useBean id="meal" type="ru.javawebinar.topjava.model.MealTo"/>
         <tr style="color: ${meal.excess ? "red" : "green"}">
-            <td><%= TimeUtil.formatDate(meal.getDateTime())%>></td>
+            <td><%= TimeUtil.formatDate(meal.getDateTime())%></td>
             <td>${meal.description}</td>
-            <td>${meal.calories}></td>
-            <td><a href="meals?index=${loop.index}&action=edit">Update</a></td>
-            <td><a href="meals?index=${loop.index}&action=delete">Delete</a></td>
+            <td>${meal.calories}</td>
+            <td><a href="meals?id=${meal.id}&action=edit">Update</a></td>
+            <td><a href="meals?id=${meal.id}&action=delete">Delete</a></td>
         </tr>
     </c:forEach>
 </table>

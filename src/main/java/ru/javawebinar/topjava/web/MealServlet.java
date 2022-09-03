@@ -7,85 +7,69 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import ru.javawebinar.topjava.model.Meal;
-import ru.javawebinar.topjava.model.MealTo;
+import ru.javawebinar.topjava.storage.InMemoryMealStorage;
+import ru.javawebinar.topjava.storage.MealStorage;
+import ru.javawebinar.topjava.util.MealsUtil;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicReference;
-import java.util.stream.Collectors;
+import java.time.temporal.ChronoUnit;
+import java.util.Objects;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
 public class MealServlet extends HttpServlet {
     private static final Logger log = getLogger(MealServlet.class);
 
-    private final List<Meal> meals = new ArrayList<>();
-    private final List<MealTo> mealsTo = new ArrayList<>();
-    private static final int CALORIES_PER_DAY = 2000;
+    private MealStorage storage;
+
+    @Override
+    public void init() throws ServletException {
+        storage = new InMemoryMealStorage();
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        log.debug("redirect to meals");
-
-        Map<LocalDate, Integer> caloriesSumByDate = meals.stream()
-                .collect(
-                        Collectors.groupingBy(Meal::getDate, Collectors.summingInt(Meal::getCalories))
-                );
-
         String action = req.getParameter("action");
         if (action == null) {
-            req.setAttribute("meals", meals.stream()
-                    .map(meal -> new MealTo(meal.getDateTime(), meal.getDescription(), meal.getCalories(), caloriesSumByDate.get(meal.getDate()) > CALORIES_PER_DAY))
-                    .collect(Collectors.toList()));
-            req.getRequestDispatcher("meals.jsp").forward(req, resp);
+            log.debug("no action, forward to meals");
+            req.setAttribute("meals", MealsUtil.getMealTos(storage.getAll()));
+            req.getRequestDispatcher("mealsList.jsp").forward(req, resp);
             return;
         }
-        MealTo mealTo = null;
         switch (action) {
             case "delete":
-                int index = Integer.parseInt(req.getParameter("index"));
-                mealsTo.remove(index);
-                meals.remove(index);
+                log.debug("action \"delete\", redirect to meals");
+                storage.delete(getId(req));
                 resp.sendRedirect("meals");
                 return;
             case "add":
-                mealTo = new MealTo(LocalDateTime.now(), "", 0, false);
-                break;
             case "edit":
-                mealTo = mealsTo.get(Integer.parseInt(req.getParameter("index")));
+                log.debug("action \"edit\" and \"add\", forward to meals");
+                final Meal meal = "add".equals(action) ?
+                        new Meal(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES), "", 0) :
+                        storage.get(getId(req));
+                req.setAttribute("meal", meal);
+                req.getRequestDispatcher("mealEdit.jsp").forward(req, resp);
                 break;
         }
+    }
 
-        req.setAttribute("meals", mealTo);
-        req.getRequestDispatcher("editmeal.jsp").forward(req, resp);
+    private Integer getId(HttpServletRequest req) {
+        String paramId = Objects.requireNonNull(req.getParameter("id"));
+        return Integer.valueOf(paramId);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-        LocalDateTime dateTime = LocalDateTime.parse(req.getParameter("dateTime"));
-        String description = req.getParameter("description");
-        int calories = Integer.parseInt(req.getParameter("calories"));
-        AtomicReference<Boolean> isNew = new AtomicReference<>(true);
-        meals.forEach(m -> {
-            if (dateTime.equals(m.getDateTime()) && description.equals(m.getDescription()) && calories==m.getCalories()) {
-                isNew.set(false);
-            }
-                });
-        if (isNew.get()){
-            Meal meal = new Meal(dateTime, description, calories);
-            meals.add(meal);
-            Map<LocalDate, Integer> caloriesSumByDate = meals.stream()
-                    .collect(
-                            Collectors.groupingBy(Meal::getDate, Collectors.summingInt(Meal::getCalories))
-                    );
-            mealsTo.add(new MealTo(meal.getDateTime(), meal.getDescription(), meal.getCalories(),
-                    caloriesSumByDate.get(meal.getDate()) > CALORIES_PER_DAY));
-        }
+        String id = req.getParameter("id");
+        Meal meal = new Meal(id.isEmpty() ? null : Integer.valueOf(id),
+                LocalDateTime.parse(req.getParameter("dateTime")),
+                req.getParameter("description"),
+                Integer.parseInt(req.getParameter("calories")));
+        log.info(meal.isNew() ? "create new meal, redirect ro meals" : "update meal, redirect ro meals");
+        storage.save(meal);
         resp.sendRedirect("meals");
     }
 }
