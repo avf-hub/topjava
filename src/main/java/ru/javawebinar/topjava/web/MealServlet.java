@@ -31,13 +31,7 @@ public class MealServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
-        if (action == null) {
-            log.debug("no action, forward to meals");
-            req.setAttribute("meals", MealsUtil.getMealTos(storage.getAll()));
-            req.getRequestDispatcher("mealsList.jsp").forward(req, resp);
-            return;
-        }
-        switch (action) {
+        switch (action == null ? "all" : action) {
             case "delete":
                 log.debug("action \"delete\", redirect to meals");
                 storage.delete(getId(req));
@@ -52,6 +46,11 @@ public class MealServlet extends HttpServlet {
                 req.setAttribute("meal", meal);
                 req.getRequestDispatcher("mealEdit.jsp").forward(req, resp);
                 break;
+            case "all":
+            default:
+                log.debug("get all meals");
+                req.setAttribute("meals", MealsUtil.getTos(storage.getAll(), MealsUtil.CALORIES_PER_DAY));
+                req.getRequestDispatcher("mealsList.jsp").forward(req, resp);
         }
     }
 
@@ -68,7 +67,7 @@ public class MealServlet extends HttpServlet {
                 LocalDateTime.parse(req.getParameter("dateTime")),
                 req.getParameter("description"),
                 Integer.parseInt(req.getParameter("calories")));
-        log.info(meal.isNew() ? "create new meal, redirect ro meals" : "update meal, redirect ro meals");
+        log.info(meal.isNew() ? "create new meal, redirect to meals" : "update meal, redirect ro meals");
         storage.save(meal);
         resp.sendRedirect("meals");
     }

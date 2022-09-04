@@ -27,12 +27,12 @@ public class InMemoryMealStorage implements MealStorage {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(int id) {
         storage.remove(id);
     }
 
     @Override
-    public Meal get(Integer id) {
+    public Meal get(int id) {
         return storage.get(id);
     }
 

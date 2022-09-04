@@ -11,7 +11,7 @@ public class TimeUtil {
         return lt.compareTo(startTime) >= 0 && lt.compareTo(endTime) < 0;
     }
 
-    public static String formatDate(LocalDateTime dataTime) {
-        return dataTime == null ? "" : dataTime.format(DATE_TIME_FORMATTER);
+    public static String formatDate(LocalDateTime dateTime) {
+        return dateTime == null ? "" : dateTime.format(DATE_TIME_FORMATTER);
     }
 }
