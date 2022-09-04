@@ -54,7 +54,7 @@ public class MealServlet extends HttpServlet {
         }
     }
 
-    private Integer getId(HttpServletRequest req) {
+    private int getId(HttpServletRequest req) {
         String paramId = Objects.requireNonNull(req.getParameter("id"));
         return Integer.parseInt(paramId);
     }
