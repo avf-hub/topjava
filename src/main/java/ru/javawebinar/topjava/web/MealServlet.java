@@ -56,7 +56,7 @@ public class MealServlet extends HttpServlet {
 
     private Integer getId(HttpServletRequest req) {
         String paramId = Objects.requireNonNull(req.getParameter("id"));
-        return Integer.valueOf(paramId);
+        return Integer.parseInt(paramId);
     }
 
     @Override
@@ -67,7 +67,7 @@ public class MealServlet extends HttpServlet {
                 LocalDateTime.parse(req.getParameter("dateTime")),
                 req.getParameter("description"),
                 Integer.parseInt(req.getParameter("calories")));
-        log.info(meal.isNew() ? "create new meal, redirect to meals" : "update meal, redirect ro meals");
+        log.info(meal.isNew() ? "create new meal, redirect to meals" : "update meal, redirect to meals");
         storage.save(meal);
         resp.sendRedirect("meals");
     }
