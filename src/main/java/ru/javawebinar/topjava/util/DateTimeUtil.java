@@ -2,6 +2,7 @@ package ru.javawebinar.topjava.util;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
@@ -24,6 +25,14 @@ public class DateTimeUtil {
 
     public static String toString(LocalDateTime ldt) {
         return ldt == null ? "" : ldt.format(DATE_TIME_FORMATTER);
+    }
+
+    public static LocalDate parseDate(String date) {
+        return date.length() == 0 ? null : LocalDate.parse(date);
+    }
+
+    public static LocalTime parseTime(String time) {
+        return time.length() == 0 ? null : LocalTime.parse(time);
     }
 }
 
