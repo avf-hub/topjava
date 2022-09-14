@@ -1,7 +1,6 @@
 package ru.javawebinar.topjava.util;
 
 import org.springframework.util.ObjectUtils;
-import org.springframework.util.StringUtils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
