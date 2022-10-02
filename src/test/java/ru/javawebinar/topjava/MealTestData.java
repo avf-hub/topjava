@@ -19,6 +19,7 @@ public class MealTestData {
     public static final int MEAL_ADMIN_ID1 = 100010;
     public static final int MEAL_ADMIN_ID2 = 100011;
     public static final int MEAL_NEW_ID = 100012;
+    public static final int ID_NOT_FOUND = 10;
 
     public static final Meal user_meal1 = new Meal(MEAL_USER_ID1,
             LocalDateTime.of(2020, Month.JANUARY, 30, 10, 0), "Завтрак", 500);
@@ -41,6 +42,15 @@ public class MealTestData {
 
     public static Meal getNew() {
         return new Meal(MEAL_NEW_ID, LocalDateTime.of(2022, Month.OCTOBER, 1, 21, 0), "new meal", 1234);
+    }
+
+    public static Meal getUpdated() {
+        Meal updated = new Meal();
+        updated.setId(MEAL_USER_ID7);
+        updated.setDateTime(LocalDateTime.of(2020, Month.JANUARY, 31, 20, 0));
+        updated.setDescription("Ужин");
+        updated.setCalories(410);
+        return updated;
     }
 
     public static void assertMatch(Meal actual, Meal expected) {
