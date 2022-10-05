@@ -22,7 +22,7 @@ public class MealTestData {
     public static final int ADMIN_MEAL_ID2 = START_SEQ + 12;
     public static final int ADMIN_MEAL_ID3 = START_SEQ + 12;
     public static final int NEW_MEAL_ID = START_SEQ + 14;
-    public static final int ID_NOT_FOUND = 10;
+    public static final int MEAL_ID_NOT_FOUND = 10;
 
     public static final Meal userMeal1 = new Meal(USER_MEAL_ID1,
             LocalDateTime.of(2020, Month.JANUARY, 30, 10, 0), "Завтрак", 500);
