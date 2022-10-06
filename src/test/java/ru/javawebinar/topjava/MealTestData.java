@@ -20,7 +20,7 @@ public class MealTestData {
     public static final int USER_MEAL_ID8 = START_SEQ + 10;
     public static final int ADMIN_MEAL_ID1 = START_SEQ + 11;
     public static final int ADMIN_MEAL_ID2 = START_SEQ + 12;
-    public static final int ADMIN_MEAL_ID3 = START_SEQ + 12;
+    public static final int ADMIN_MEAL_ID3 = START_SEQ + 13;
     public static final int NEW_MEAL_ID = START_SEQ + 14;
     public static final int MEAL_ID_NOT_FOUND = 10;
 
@@ -46,6 +46,8 @@ public class MealTestData {
             LocalDateTime.of(2015, Month.JUNE, 1, 21, 0), "Админ ланч", 1500);
     public static final Meal adminMeal3 = new Meal(ADMIN_MEAL_ID3,
             LocalDateTime.of(2022, Month.OCTOBER, 2, 11, 0), "Завтрак вместе с пользователем", 710);
+    public static final Meal mealNotFound = new Meal(MEAL_ID_NOT_FOUND,
+            LocalDateTime.of(2022, Month.OCTOBER, 7, 11, 0), "Завтрак", 210);
 
     public static Meal getNew() {
         return new Meal(NEW_MEAL_ID, LocalDateTime.of(2022, Month.OCTOBER, 1, 21, 0), "new meal", 1234);
