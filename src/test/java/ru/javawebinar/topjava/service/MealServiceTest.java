@@ -96,7 +96,7 @@ public class MealServiceTest {
 
     @Test
     public void updateNotFound() {
-        assertThrows(NotFoundException.class, () -> service.update(userMeal1, ADMIN_ID));
+        assertThrows(NotFoundException.class, () -> service.update(mealNotFound, USER_ID));
     }
 
     @Test
@@ -118,7 +118,7 @@ public class MealServiceTest {
     @Test
     public void duplicateDataTimeCreate() {
         assertThrows(DataAccessException.class, () -> service.create(
-                new Meal(null, userMeal6.getDateTime(), "Duplicate", 1200),
+                new Meal(userMeal6.getDateTime(), "Duplicate", 1200),
                 USER_ID
         ));
     }
