@@ -4,26 +4,35 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+@NamedQueries(value = {
+        @NamedQuery(name = Meal.DELETE, query = "DELETE FROM Meal m WHERE m.id=:id AND m.user.id=:userId"),
+        @NamedQuery(name = Meal.ALL_SORTED, query = "SELECT m FROM Meal m " +
+                "WHERE m.user.id=:userId ORDER BY m.dateTime DESC"),
+        @NamedQuery(name = Meal.BETWEEN_HALF_OPEN, query = "SELECT m FROM Meal m " +
+                "WHERE m.user.id=?1 AND m.dateTime >=  ?2 AND m.dateTime < ?3 ORDER BY m.dateTime DESC")
+})
 @Entity
-@Table(name = "meals")
+@Table(name = "meals", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "date_time"},
+        name = "meals_unique_user_datetime_idx")})
 public class Meal extends AbstractBaseEntity {
 
-    @Column(name = "date_time", nullable = false, unique = true)
+    public static final String DELETE = "Meal.delete";
+
+    public static final String ALL_SORTED = "Meal.getAllSorted";
+
+    public static final String BETWEEN_HALF_OPEN = "Meal.getBetweenHalfOpen";
+
+    @Column(name = "date_time", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @NotNull
-    @NotEmpty
-    @NotBlank
     private LocalDateTime dateTime;
 
     @Column(name = "description", nullable = false)
-    @NotNull
-    @NotEmpty
     @NotBlank
     private String description;
 
@@ -32,6 +41,8 @@ public class Meal extends AbstractBaseEntity {
     private int calories;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    @NotNull
     private User user;
 
     public Meal() {
