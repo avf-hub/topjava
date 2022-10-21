@@ -55,7 +55,11 @@ public class MealServiceTest {
 
     @AfterClass
     public static void printResult() {
-        log.info(String.valueOf(results) + " ms");
+        log.info("\n======================================="
+                + "\nTest, ms"
+                + "\n=======================================\n"
+                + results
+                + "=======================================");
     }
 
 
