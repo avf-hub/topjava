@@ -38,7 +38,11 @@ public class MealServiceTest {
 
     private static final StringBuilder results = new StringBuilder();
 
-    public static final Stopwatch STOPWATCH = new Stopwatch() {
+    @Autowired
+    private MealService service;
+
+    @Rule
+    public Stopwatch stopwatch = new Stopwatch() {
         @Override
         protected void finished(long nanos, Description description) {
             String result = String.format("%-95s %7d", description.getDisplayName(), TimeUnit.NANOSECONDS.toMillis(nanos));
@@ -46,12 +50,6 @@ public class MealServiceTest {
             log.info(result + " ms\n");
         }
     };
-
-    @Autowired
-    private MealService service;
-
-    @Rule
-    public Stopwatch stopwatch = STOPWATCH;
 
     @AfterClass
     public static void printResult() {

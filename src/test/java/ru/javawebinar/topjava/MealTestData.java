@@ -35,7 +35,6 @@ public class MealTestData {
 
     public static Meal getUpdated() {
         Meal newMeal = new Meal(MEAL1_ID, meal1.getDateTime().plus(2, ChronoUnit.MINUTES), "Обновленный завтрак", 200);
-        newMeal.setUser(UserTestData.user);
         return newMeal;
     }
 }
