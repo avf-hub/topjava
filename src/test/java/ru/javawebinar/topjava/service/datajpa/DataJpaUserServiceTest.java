@@ -1,4 +1,4 @@
-package ru.javawebinar.topjava.repository.datajpa;
+package ru.javawebinar.topjava.service.datajpa;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -26,5 +26,11 @@ public class DataJpaUserServiceTest extends AbstractUserServiceTest {
     @Test
     public void getWithMealsNotFound() {
         Assert.assertThrows(NotFoundException.class, () -> service.getWithMeals(NOT_FOUND));
+    }
+
+    @Test
+    public void getWithMealsIsEmpty() {
+        User user = service.getWithMeals(GUEST_ID);
+        Assert.assertTrue(user.getMeals().isEmpty());
     }
 }

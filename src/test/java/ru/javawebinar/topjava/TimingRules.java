@@ -23,20 +23,17 @@ public class TimingRules {
         }
     };
 
-    // элемент разметки
     //    https://dzone.com/articles/applying-new-jdk-11-string-methods
     private static final String DELIM = "-".repeat(103);
 
     //форматируем красивый вывод в консоль
     public static final ExternalResource SUMMARY = new ExternalResource() {
 
-        //обнуляем перед запуском тестов класса
         @Override
-        protected void before() throws Throwable {
+        protected void before() {
             results.setLength(0);
         }
 
-        //выводим отформатированный результат
         @Override
         protected void after() {
             log.info("\n" + DELIM +

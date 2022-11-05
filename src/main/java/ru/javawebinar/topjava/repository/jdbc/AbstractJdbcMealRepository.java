@@ -32,7 +32,7 @@ public abstract class AbstractJdbcMealRepository implements MealRepository {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
-    public abstract <T> T toDbDateTime(LocalDateTime ldt);
+    protected abstract <T> T toDbDateTime(LocalDateTime ldt);
 
     @Override
     public Meal save(Meal meal, int userId) {
