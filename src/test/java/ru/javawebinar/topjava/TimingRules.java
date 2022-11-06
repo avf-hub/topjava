@@ -26,7 +26,6 @@ public class TimingRules {
     //    https://dzone.com/articles/applying-new-jdk-11-string-methods
     private static final String DELIM = "-".repeat(103);
 
-    //форматируем красивый вывод в консоль
     public static final ExternalResource SUMMARY = new ExternalResource() {
 
         @Override
