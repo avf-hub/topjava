@@ -18,9 +18,9 @@ import static ru.javawebinar.topjava.util.ValidationUtil.checkNew;
 
 public abstract class AbstractMealController {
 
-    protected static final Logger log = LoggerFactory.getLogger(MealRestController.class);
+    protected static final Logger log = LoggerFactory.getLogger(AbstractMealController.class);
 
-    protected final MealService service;
+    private final MealService service;
 
     public AbstractMealController(MealService service) {
         this.service = service;
@@ -45,15 +45,15 @@ public abstract class AbstractMealController {
     }
 
     public Meal create(Meal meal) {
-        int userId = SecurityUtil.authUserId();
         checkNew(meal);
+        int userId = SecurityUtil.authUserId();
         log.info("create {} for user {}", meal, userId);
         return service.create(meal, userId);
     }
 
     public void update(Meal meal, int id) {
-        int userId = SecurityUtil.authUserId();
         assureIdConsistent(meal, id);
+        int userId = SecurityUtil.authUserId();
         log.info("update {} for user {}", meal, userId);
         service.update(meal, userId);
     }
