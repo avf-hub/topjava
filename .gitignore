@@ -5,4 +5,5 @@ target
 *.iml
 log
 *.patch
-*.properties
+hsqldb.properties
+postgres.properties
