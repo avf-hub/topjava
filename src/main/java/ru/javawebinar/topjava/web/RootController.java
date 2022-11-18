@@ -51,4 +51,44 @@ public class RootController {
                 SecurityUtil.authUserCaloriesPerDay()));
         return "meals";
     }
+
+    @GetMapping("/meals")
+    public String getMeals(Model model) {
+        log.info("meals");
+        model.addAttribute("meals",
+                MealsUtil.getTos(mealService.getAll(SecurityUtil.authUserId()), SecurityUtil.authUserCaloriesPerDay()));
+        return "meals";
+    }
+
+    @GetMapping("/meals")
+    public String getMeals(Model model) {
+        log.info("meals");
+        model.addAttribute("meals",
+                MealsUtil.getTos(mealService.getAll(SecurityUtil.authUserId()), SecurityUtil.authUserCaloriesPerDay()));
+        return "meals";
+    }
+
+    @GetMapping("/meals")
+    public String getMeals(Model model) {
+        log.info("meals");
+        model.addAttribute("meals",
+                MealsUtil.getTos(mealService.getAll(SecurityUtil.authUserId()), SecurityUtil.authUserCaloriesPerDay()));
+        return "meals";
+    }
+
+    @GetMapping("/meals")
+    public String getMeals(Model model) {
+        log.info("meals");
+        model.addAttribute("meals",
+                MealsUtil.getTos(mealService.getAll(SecurityUtil.authUserId()), SecurityUtil.authUserCaloriesPerDay()));
+        return "meals";
+    }
+
+    @GetMapping("/meals")
+    public String getMeals(Model model) {
+        log.info("meals");
+        model.addAttribute("meals",
+                MealsUtil.getTos(mealService.getAll(SecurityUtil.authUserId()), SecurityUtil.authUserCaloriesPerDay()));
+        return "meals";
+    }
 }

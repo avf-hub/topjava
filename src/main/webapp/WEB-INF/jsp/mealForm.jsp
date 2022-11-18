@@ -6,11 +6,12 @@
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
 <jsp:include page="fragments/bodyHeader.jsp"/>
+
 <section>
-    <h3><spring:message code="meal.title"/></h3>
-    <hr>
     <jsp:useBean id="meal" type="ru.javawebinar.topjava.model.Meal" scope="request"/>
-    <h2><spring:message code="${meal.isNew() ? 'meal.add' : 'meal.edit'}"/></h2>
+<%--    `meal.new` cause javax.el.ELException - bug tomcat --%>
+    <h3><spring:message code="${meal.isNew() ? 'meal.add' : 'meal.edit'}"/></h3>
+    <hr>
     <form method="post" action="meals">
         <input type="hidden" name="id" value="${meal.id}">
         <dl>
