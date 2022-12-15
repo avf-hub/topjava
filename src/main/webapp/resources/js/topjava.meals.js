@@ -5,7 +5,7 @@ const ctx = {
     updateTable: function () {
         $.ajax({
             type: "GET",
-            url: mealAjaxUrl + "filter",
+            url: mealsAjaxUrl + "filter",
             data: $("#filter").serialize()
         }).done(updateTableData);
     }
@@ -37,7 +37,7 @@ $(function () {
             ],
             "order": [
                 0,
-                "asc"
+                "desc"
             ]
         })
     );
@@ -45,5 +45,5 @@ $(function () {
 
 function clearFilter() {
     $("#filter")[0].reset();
-    $.get(mealsAjaxUrl, updateTableData());
+    $.get(mealsAjaxUrl, updateTableData);
 }

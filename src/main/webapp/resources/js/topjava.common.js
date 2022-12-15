@@ -3,9 +3,6 @@ let form;
 function makeEditable(datatableApi) {
     ctx.datatableApi = datatableApi;
     form = $('#detailsForm');
-    $(".delete").click(function () {
-        deleteRow($(this).closest('tr').attr("id"));
-    });
 
     $(document).ajaxError(function (event, jqXHR, options, jsExc) {
         failNoty(jqXHR);
@@ -32,7 +29,7 @@ function deleteRow(id) {
     }
 }
 
-function updateTableData() {
+function updateTableData(data) {
         ctx.datatableApi.clear().rows.add(data).draw();
 }
 
