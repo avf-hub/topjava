@@ -2,6 +2,11 @@
 
 ## <a href="https://drive.google.com/drive/folders/1Urw8CidiVJDIXd9IwyadjBxPmpsL_MCr">Материалы занятия</a>
 
+### ![correction](https://cloud.githubusercontent.com/assets/13649199/13672935/ef09ec1e-e6e7-11e5-9f79-d1641c05cbe6.png) Правки в проекте
+
+#### Apply 6_0_fix.patch
+Правки и оптимизация кода
+
 ## ![hw](https://cloud.githubusercontent.com/assets/13649199/13672719/09593080-e6e7-11e5-81d1-5cb629c438ca.png) Разбор домашнего задания HW5
 
 ### ![video](https://cloud.githubusercontent.com/assets/13649199/13672715/06dbc6ce-e6e7-11e5-81a9-04fbddb9e488.png) 1. [HW5: Spring Profiles. Spring Data JPA](https://drive.google.com/file/d/1dlhXeQr0fi0XymEFyBG-TXv5hpPgXtlT)
@@ -807,9 +812,6 @@ Spring также автоматически может изменять лок�
 -  <a href="http://learningviacode.blogspot.ru/2012/07/reloadable-messagesources.html">Reloadable MessageSources</a>
 -  <a href="http://nginx.com/resources/admin-guide/serving-static-content/">nginx: Serving Static Content</a>
 
-#### Apply 7_0_fix.patch
-Небольшие правки
-
 ## ![question](https://cloud.githubusercontent.com/assets/13649199/13672858/9cd58692-e6e7-11e5-905d-c295d2a456f1.png) Ваши вопросы
 >  Кэш hibernate надстраивается над ehcache или живет самостоятельно?
 
@@ -884,7 +886,7 @@ Hibernate supports following open-source cache implementations out-of-the-box: E
 ### Optional
 - 2.1 Добавить транзакционность (`DataSourceTransactionManager`) в Jdbc-реализации  
 - 2.2 Добавить еще одну роль к юзеру Admin (будет 2 роли: `USER, ADMIN`).
-- 2.3 В `JdbcUserRepository` добавить реализацию ролей юзера (добавлять можно одним запросом с JOIN и `RowMapper`, либо двумя запросами (отдельно `users` и отдельно `roles`). [Объяснение SQL JOIN](http://www.skillz.ru/dev/php/article-Obyasnenie_SQL_obedinenii_JOIN_INNER_OUTER.html)
+- 2.3 В `JdbcUserRepository` добавить реализацию ролей юзера (добавлять можно одним запросом с JOIN и `ResultSetExtractor/ RowCallbackHandler`, либо двумя запросами (отдельно `users` и отдельно `roles`). [Объяснение SQL JOIN](http://www.skillz.ru/dev/php/article-Obyasnenie_SQL_obedinenii_JOIN_INNER_OUTER.html)
   - 2.3.1 В реализации `getAll` НЕ делать запрос ролей для каждого юзера (N+1 select)
   - 2.3.2 При save посмотрите на <a href="https://www.mkyong.com/spring/spring-jdbctemplate-batchupdate-example/">batchUpdate()</a>
 - 2.4 Добавить проверку ролей в `UserTestData.USER_MATCHER.assertMatch` и починить ВСЕ тесты (тесты должны проходить для юзера с несколькими ролями)  

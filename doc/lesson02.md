@@ -2,6 +2,16 @@
 
 ## <a href="https://drive.google.com/drive/folders/0B9Ye2auQ_NsFfkpsWE1uX19zV19IVHd0bTlDclc5QmhMMm4xa0Npek9DT18tdkwyLTBZdXM">Материалы занятия</a> (скачать все патчи можно через Download папки patch)
 
+### ![correction](https://cloud.githubusercontent.com/assets/13649199/13672935/ef09ec1e-e6e7-11e5-9f79-d1641c05cbe6.png) Обновление зависимостей
+#### Apply 2_0_update.patch
+- Обновил версии slf4j и logback на последние. Обычно ищу их в [Maven Central Repository](https://search.maven.org/)
+- Не забудьте сделать `mvn clean` чтобы почистить из `target` старые версии
+
+### Внимание! поправил патч - новая версия logback 1.4.x [работает только с JDK 11+](https://logback.qos.ch/news.html)
+Итого - поменял версию logback на 1.3.4.  
+Если уже накатили патчи - просто у себя в pom исправьте:
+`<logback.version>1.4.4</logback.version>` на `<logback.version>1.3.4</logback.version>`
+
 ## ![hw](https://cloud.githubusercontent.com/assets/13649199/13672719/09593080-e6e7-11e5-81d1-5cb629c438ca.png) Разбор домашнего задания HW1:
 
 - **Перед сборкой проекта (или запуском Tomcat) откройте вкладку Maven Projects и сделайте `clean`**

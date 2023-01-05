@@ -111,7 +111,7 @@
 
 >  В тестах сервисов `AbstractServiceTest` базу восстанавливаем после теста (при старте приложения она популируется, если последний тест в сервисах ее меняет, тесты контроллеров могут не пройти)
 
-Примечание: [в публичном API выполнять PATH с параметрами нельзя](https://stackoverflow.com/questions/64390768/can-i-use-query-parameters-with-http-patch-method). But in a situation where your API is
+Примечание: [в публичном API выполнять PATCH с параметрами нельзя](https://stackoverflow.com/questions/64390768/can-i-use-query-parameters-with-http-patch-method). But in a situation where your API is
 only used by front ends that you control (for example, only called via your java script client downloaded from your web servers), and if you don't need to use any intermediate components (like a web
 cache) in the middle, then you might get away with it (данные у нас не кешируются).
 

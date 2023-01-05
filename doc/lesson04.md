@@ -2,11 +2,6 @@
 
 ## <a href="https://drive.google.com/open?id=0B9Ye2auQ_NsFfkxqbVpwZUd5anQ2TXE4bm5HbXhtVmkxMUxFSjhNQ1hXYVVTTTZEMzkzN2s">Материалы занятия</a>
 
-### ![correction](https://cloud.githubusercontent.com/assets/13649199/13672935/ef09ec1e-e6e7-11e5-9f79-d1641c05cbe6.png) Правки в проекте
-
-#### Apply 4_0_fix.patch
-Небольшая коррекция
-
 ## ![hw](https://cloud.githubusercontent.com/assets/13649199/13672719/09593080-e6e7-11e5-81d1-5cb629c438ca.png) Разбор домашнего задания HW3
 
 ### ![video](https://cloud.githubusercontent.com/assets/13649199/13672715/06dbc6ce-e6e7-11e5-81a9-04fbddb9e488.png) 1. [HW03: meals + JdbcMealRepository](https://drive.google.com/file/d/1_IIYBP5l2aHxHaY_j1bqFWj1maACvNpa)
@@ -16,7 +11,7 @@
 
 #### `SpringMain, InMemoryAdminRestControllerTest, InMemoryAdminRestControllerSpringTest` починим в патче `4_7_create_inmemory_test_ctx` (видео 4)
 
-#### **Apply 4_1_HW3.patch**
+#### **Apply 4_1_HW3.patch**]()
 
 ### [Сравнение времени выполнения для разных индексов](meals_index.md)
 - <a href="http://stackoverflow.com/questions/970562/postgres-and-indexes-on-foreign-keys-and-primary-keys">На id как на primary key индекс создается автоматически</a>
@@ -91,7 +86,7 @@
 
 #### **Apply 4_8_add_jpa.patch**
 > - **[Настройка JPA в IDEA](https://github.com/JavaOPs/topjava/wiki/IDEA#jpa).   
-ПРОВЕРЬТЕ, что у вас не подтянулись Java EE 6 libraries, все зависимости в проект попадают только через Maven! Перед настройкой сначала подтяните его зависимости**
+ПРОВЕРЬТЕ, что у вас не подтянулись Java EE libraries, все зависимости в проект попадают только через Maven! Перед настройкой сначала подтяните его зависимости**
 > - `indexes` и `uniqueConstraints` в Entities (у нас `User`) используются только при создании таблицы средствами JPA (автогенерации БД при запуске приложения).
  В случае, если таблицы создаются скриптом, эти опции будут проигнорированы. У нас они дублируют ограничения в `initDB.sql` и будут использоваться, когда мы будем смотреть на автогенерацию DDL по модели на 7-м занятии. 
 > - Тесты и приложение ломаются. `MealServiceTest` починится после выполнения HW04 (`JpaMealRepository`)
@@ -99,26 +94,26 @@
 
 - [JPQL в JPA](https://russianblogs.com/article/74321542380/)
 - Дополнительно:
-  -  <a href="http://ru.wikipedia.org/wiki/ORM">ORM</a>
-  -  <a href="http://habrahabr.ru/post/265061/">JPA и Hibernate в вопросах и ответах</a>
+  -  [ORM](http://ru.wikipedia.org/wiki/ORM)
+  -  [JPA и Hibernate в вопросах и ответах](http://habrahabr.ru/post/265061/)
   - [Hibernate — о чем молчат туториалы](https://habr.com/ru/post/416851/)
   - [Наследование в Hibernate: выбор стратегии](https://habrahabr.ru/post/337488/)
-  - <a href="https://easyjava.ru/data/jpa/jpa-entitymanager-upravlyaem-sushhnostyami/">JPA EntityManager: управляем сущностями</a>
+  - [Entity Lifecycle Model in JPA & Hibernate](https://thorben-janssen.com/entity-lifecycle-model/)
     - [Field vs property access](http://stackoverflow.com/a/6084701/548473)
     - [Hibernate: введение и написания Hello world приложения](https://web.archive.org/web/20200810114404/http://www.quizful.net/post/Hibernate-3-introduction-and-writing-hello-world-application)
     - [15 reasons why we need to choose Hibernate over JDBC](https://web.archive.org/web/20211201122631/https://habiletechnologies.com/blog/reasons-to-choose-hibernate-over-jdbc/#fin_form_pop)
     - [Hibernate or JDBC](https://stackoverflow.com/questions/1353137/548473)
-    -  <a href="http://en.wikibooks.org/wiki/Java_Persistence/Mapping">Mapping: описание модели Hibernate (hbm.xml/annotation)</a>.
-    -  <a href="https://ru.wikipedia.org/wiki/Hibernate_(библиотека)">Hibernate</a>. Другие ORM: <a href="http://en.wikipedia.org/wiki/TopLink">TopLink</a>, <a href="http://en.wikipedia.org/wiki/EclipseLink">EсlipseLink</a>, <a href="http://en.wikipedia.org/wiki/Ebean">EBean</a> (<a href="http://www.playframework.com/documentation/2.2.x/JavaEbean">used in Playframework</a>).
-    -  <a href="http://ru.wikipedia.org/wiki/Java_Persistence_API">JPA (wiki)</a>. <a href="https://en.wikipedia.org/wiki/Java_Persistence_API">JPA (english wiki)</a>. <a href="http://www.jpab.org/All/All/All.html">JPA Performance Benchmark</a>
-    -  <a href="http://en.wikibooks.org/wiki/Java_Persistence/Identity_and_Sequencing">Стратегии генерации PK</a>
-    -  <a href="http://validator.hibernate.org">hibernate-validator</a>. <a href="http://stackoverflow.com/questions/14730329/jpa-2-0-exception-to-use-javax-validation-package-in-jpa-2-0">JSR-303 -> JSR-349</a>
-    -  <a href="https://web.archive.org/web/20170514002949/http://java.devcolibri.com:80/post/15">Описание связей в модели. Ленивая загрузка объекта.</a>
-    -  <a href="http://docs.jboss.org/hibernate/entitymanager/3.6/reference/en/html/architecture.html#d0e61">JPA definitions</a>
-    -  <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#expressions">Spring expressions: выражения в конфигурации</a>
-    -  <a href="https://proselyte.net/tutorials/hibernate-tutorial/hibernate-query-language/">HQL</a>/ <a href="http://ru.wikipedia.org/wiki/Java_Persistence_Query_Language">JPQL</a>.
-    -  Динамические запросы (которые формируются в коде): <a href="http://www.objectdb.com/java/jpa/query/criteria">JPA Criteria API</a>. <a href="http://www.querydsl.com/">Unified Queries for Java</a>
-    -  <a href="https://web.archive.org/web/20170608194049/https://bitbucket.org/montanajava/jpaattributeconverters">Using the Java 8 Date Time Classes with JPA</a>
+    -  [Mapping: описание модели Hibernate (hbm.xml/annotation)](http://en.wikibooks.org/wiki/Java_Persistence/Mapping).
+    -  [used in Playframework](https://ru.wikipedia.org/wiki/Hibernate_(библиотека)">Hibernate). Другие ORM: [TopLink](http://en.wikipedia.org/wiki/TopLink), [EсlipseLink](http://en.wikipedia.org/wiki/EclipseLink)
+    -  [Jakarta Persistence (JPA, english wiki)](https://en.wikipedia.org/wiki/Java_Persistence_API)
+    -  [Стратегии генерации PK](http://en.wikibooks.org/wiki/Java_Persistence/Identity_and_Sequencing)
+    -  [hibernate-validator](http://validator.hibernate.org).
+    -  [Описание связей в модели. Ленивая загрузка объекта.](https://web.archive.org/web/20170514002949/http://java.devcolibri.com:80/post/15)
+    -  [JPA definitions](http://docs.jboss.org/hibernate/entitymanager/3.6/reference/en/html/architecture.html#d0e61)
+    -  [Spring expressions: выражения в конфигурации](https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#expressions)
+    -  [HQL](https://proselyte.net/tutorials/hibernate-tutorial/hibernate-query-language), [JPQL](http://ru.wikipedia.org/wiki/Java_Persistence_Query_Language)
+    -  Динамические запросы (которые формируются в коде): [Unified Queries for Java](http://www.querydsl.com/), [JPA Criteria API](http://www.objectdb.com/java/jpa/query/criteria)
+    -  [Using the Java 8 Date Time Classes with JPA](https://web.archive.org/web/20170608194049/https://bitbucket.org/montanajava/jpaattributeconverters)
 
 #### **Apply 4_9_add_named_query_and_transaction.patch**
 > Чтобы посмотреть информацию о транзакциях (открытие/закрытие и пр.), можно выставить в конфигурации logback 
@@ -142,11 +137,10 @@
    - <a href="http://www.youtube.com/watch?v=YzOTZTt-PR0">Видео: Николай Алименков — Босиком по граблям Hibernate</a>
    - <a href="https://www.youtube.com/watch?v=b52Qz6qlic0">Видео: Николай Алименков — Сделаем Hibernate снова быстрым</a>
    - <a href="https://www.ibm.com/developerworks/ru/library/j-ts2/">Стратегии работы с транзакциями</a>
-   - <a href="https://easyjava.ru/tag/jpa/">Примеры работы с JPA</a>
    - <a href="http://www.byteslounge.com/tutorials/spring-transaction-propagation-tutorial">Spring transaction propagation tutorial</a>
    - <a href="https://dzone.com/refcardz/getting-started-with-jpa">Getting Started with JPA</a>
    - <a href="http://en.wikibooks.org/wiki/Java_Persistence">Java Persistence</a>
-   - <a href="https://easyjava.ru/category/data/jpa/">Разделы по Java Persistence API</a>
+   - <a href="https://web.archive.org/web/20220519045236/https://easyjava.ru/category/data/jpa/">Разделы по Java Persistence API</a>
    - <a href="http://docs.spring.io/spring-framework/docs/4.0.x/spring-framework-reference/html/transaction.html">Spring Framework transaction management</a>
    - <a href="http://www.baeldung.com/persistence-with-spring-series/">Spring Persistence Tutorial</a>
    - <a href="http://www.objectdb.com/java/jpa/persistence/managed#Entity_Object_Life_Cycle">Working with JPA Entity Objects</a>
@@ -164,7 +158,7 @@
 >  Есть несколько аналогичных "встроенных" баз данных. H2, HSQLDB, Derby, SQLite. Почему был выбран HSQLDB?
 
 Просто с ней приходилось работать. HSQLDB и H2 наиболее популярны. В миграции на spring-boot будем использовать H2.
-Здесь интересное краткое описание <a href="http://easyjava.ru/data/vstraivaemye-bazy-dannyx-v-java/">встраиваемых баз данных в Java</a>. 
+Здесь интересное краткое описание <a href="https://web.archive.org/web/20220519045402/https://easyjava.ru/data/vstraivaemye-bazy-dannyx-v-java/">встраиваемых баз данных в Java</a>. 
 В HSQLDB нет репликаций, кластеризации и объем данным ограничен несколькими TB. Для большого количества приложений она подходит и для продакшена. См.
 - <a href="http://stackoverflow.com/questions/4152911/what-is-hsqldb-limitations">What is HSQLDB limitations?</a>
 - <a href="https://habrahabr.ru/sandbox/23199/">HSQLDB в режиме in-process</a>

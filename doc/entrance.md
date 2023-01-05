@@ -13,6 +13,9 @@ Java Enterprise Online Project
 
 ## <a href="http://topjava.herokuapp.com/" target=_blank>Демо разрабатываемого приложения</a>
 
+Возможно, будет удобнее проходить урок с использованием плагина форматирования страниц, например [Postlight Reader](https://chrome.google.com/webstore/detail/postlight-reader/oknpjjbmpnndlpmnhmekjpocelpnlfdi)
+
+
 Вводное занятие (обязательно смотреть все видео)
 ===============
 ## ![video](https://cloud.githubusercontent.com/assets/13649199/13672715/06dbc6ce-e6e7-11e5-81a9-04fbddb9e488.png) 1. <a href="https://drive.google.com/file/d/0B9Ye2auQ_NsFY1ZDNXRCd1NCTG8/view?resourcekey=0-NKNOHbTWXnsZtbe5_8B6Bg">Осваиваем Java Enterprise. Трудоустройство. Ответы на вопросы.</a>
@@ -71,7 +74,7 @@ Java Enterprise Online Project
    - <a href="http://stackoverflow.com/questions/29695918/intellij-idea-console-issue#33035499">Выставить кодировку UTF-8 в консоли</a>
    - <a href="https://github.com/JavaOPs/topjava/wiki/IDEA#%D0%9F%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D1%82%D1%8C-%D0%BA%D0%BE%D0%B4%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D1%83-utf-8">Поставить кодировку UTF-8</a>
    - Опционально: <a href="https://github.com/JavaOPs/topjava/wiki/IDEA#%D0%9F%D0%BE%D0%BC%D0%B5%D0%BD%D1%8F%D1%82%D1%8C-%D1%84%D0%BE%D0%BD%D1%82-%D0%BF%D0%BE-%D1%83%D0%BC%D0%BE%D0%BB%D1%87%D0%B0%D0%BD%D0%B8%D1%8E-dejavu">Поменять фонт по умолчанию (DejaVu)</a> или на **новый [JetBrains Mono](https://habr.com/ru/company/jugru/news/t/484134/)**
--  По ходу видео сделать Apply Patch... скаченного патча Prepare_ to_ HW0.patch
+-  По ходу видео сделать Apply Patch... скаченного патча [Prepare_ to_ HW0.patch](https://drive.google.com/file/d/1LNPpu9OkuCpfpD8ZJHO-o0vwu49p2i5M)
 -  Закоммитить и запушить изменения (commit + push)
 -  Сделать ветку домашнего задания
 -  Выполнить задание и залить на GitHub (commit + push)
@@ -130,7 +133,8 @@ Java Enterprise Online Project
 -  <a href="http://habrahabr.ru/company/luxoft/blog/270383/">Шпаргалка Java Stream API</a>
 -  <a href="https://www.youtube.com/watch?v=hEyCK4ueBlc">Алексея Владыкин: Элементы функционального программирования в Java</a>
 -  <a href="https://www.youtube.com/watch?v=iD8H7cmxw_w">Yakov Fain о новом в Java 8</a>
--  <a href="http://stackoverflow.com/questions/28319064/java-8-best-way-to-transform-a-list-map-or-foreach">stream.map vs forEach</a
+-  <a href="http://stackoverflow.com/questions/28319064/java-8-best-way-to-transform-a-list-map-or-foreach">stream.map vs forEach</a>
+-  [Руководство по Java Stream в Java 8](https://javarush.com.ua/groups/posts/3974-kofe-breyk-177-podrobnoe-rukovodstvo-po-java-stream-v-java-8)
 -  Дополнительно
    - [Сергей Куксенко — Stream API, часть 1](https://www.youtube.com/watch?v=O8oN4KSZEXE)
    - [Сергей Куксенко — Stream API, часть 2](https://www.youtube.com/watch?v=i0Jr2l3jrDA)
@@ -147,8 +151,10 @@ Java Enterprise Online Project
  
 
 Ресурсы:
-- [Java 8 Stream API, часть шестая: собственный коллектор](https://easyjava.ru/java/language/java-8-stream-api-chast-shestaya-sobstvennyj-kollektor)
+- [Java 8 Stream API, часть шестая: собственный коллектор](https://web.archive.org/web/20220519062533/https://easyjava.ru/java/language/java-8-stream-api-chast-shestaya-sobstvennyj-kollektor/)
 - [Руководство по Java 8 Stream API: Collector](https://annimon.com/article/2778#collector)
+- [Хватит писать циклы! Топ-10 лучших методов для работы с коллекциями из Java 8](https://javarush.ru/groups/posts/524-khvatit-pisatjh-ciklih-top-10-luchshikh-metodov-dlja-rabotih-s-kollekcijami-iz-java8)
+- [Понять Java Stream API](https://vc.ru/u/604567-yerlan-akzhanov/194409-ponyat-java-stream-api)    
 
 ### Замечания по использованию Stream API:
 - Когда встречаешь что-то непривычное, приходится перестраивать мозги. Например, переход с процедурного на ООП программирование дается непросто. Те, кто не знает шаблонов (и не хотят учить) также их встречают плохо. Хорошая новость в том, что если это принять и начать использовать, то начинаешь получать от этого удовольствие. И тут главное не впасть в другую крайность:
@@ -196,6 +202,7 @@ Java Enterprise Online Project
 - <a href="http://anton.shevchuk.name/jquery/">jQuery для начинающих</a>
 
 #### Java (базовые вещи)
+- [Сборник видео "Изучаем Java"](https://www.youtube.com/playlist?list=PLyxk-1FCKqockmP-fXZmHQ7UlYP3qvZRa)
 - <a href="http://www.intuit.ru/studies/courses/16/16/info">Интуит. Программирование на Java</a>
 - <a href="https://github.com/JavaOPs/masterjava#Первое-занятие-многопоточность">1й урок MasterJava: Многопоточность</a>
 - [Основы Java garbage collection](http://web.archive.org/web/20180831013112/https://ggenikus.github.io/blog/2014/05/04/gc)

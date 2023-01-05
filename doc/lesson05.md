@@ -1,22 +1,18 @@
-`# Стажировка <a href="https://github.com/JavaWebinar/topjava">Topjava</a>
+# Стажировка <a href="https://github.com/JavaWebinar/topjava">Topjava</a>
 ## <a href="https://drive.google.com/drive/folders/0B9Ye2auQ_NsFfmctT3oyNW1qaVhDb2p0bGpyTFVlaUJ2VVpOdVgtWF9KTUFBMWFaR2xVYVE">Материалы занятия</a>
 
-### ![correction](https://cloud.githubusercontent.com/assets/13649199/13672935/ef09ec1e-e6e7-11e5-9f79-d1641c05cbe6.png) Правки в проекте
-
-#### Apply 5_0_fix.patch
-Небольшая коррекция
-
-## ![video](https://cloud.githubusercontent.com/assets/13649199/13672715/06dbc6ce-e6e7-11e5-81a9-04fbddb9e488.png) 1. [Обзор JDK 9/11. Миграция Topjava с 1.8 на JDK 17](http://javaops.ru/view/resources/jdk8+)
-### Внимание: для JDK 17 обновите IDEA на последнюю версию и Tomcat на 9.x
-> - Проект обновил до JDK 17. Для запуска Maven или Tomcat переопредели переменную окружения `JAVA_HOME` и переменную `path`, чтобы  `java -version` тоже было 17. Напомню, что IDEA это java процесс. Чтобы новые переменные окружения в ней увиделись, требуется ее перегрузить.
+## ![video](https://cloud.githubusercontent.com/assets/13649199/13672715/06dbc6ce-e6e7-11e5-81a9-04fbddb9e488.png) 1. [Обзор JDK 9/11. Миграция Topjava с 1.8 на JDK 17+](http://javaops.ru/view/resources/jdk8+)
+### Выбрать можно любую версию 17+. Для JDK 17+ обновите IDEA на последнюю версию и Tomcat на 9.x
+> - Проект обновил до JDK 17+. Для запуска Maven или Tomcat переопредели переменную окружения `JAVA_HOME` и переменную `path` на `JAVA_HOME\bin`, чтобы  `java -version` тоже было 17+. Напомню, что IDEA это java процесс. Чтобы новые переменные окружения в ней увиделись, требуется ее перегрузить.
 
 - [API, ради которых наконец-то стоит обновиться с Java 8 (1)](https://habr.com/ru/post/485750)
 - [API, ради которых наконец-то стоит обновиться с Java 8 (2)](https://habr.com/ru/post/487636)
 - [Руководство по возможностям Java версий 8-16](https://habr.com/ru/post/551590/)
 
+**ВНИМАНИЕ: патч меняет `pom.xml`. Если у вас JDK>1.8 и вы его меняли самостоятельно - [сверьтесь с репозиторием](https://github.com/JavaOPs/topjava/wiki/git#user-content-compare)**
 #### Apply 5_1_jdk_17.patch
 - [Добавил javax зависимости](https://stackoverflow.com/questions/48204141/replacements-for-deprecated-jpms-modules-with-java-ee-apis)
-- Ошибка при сборке (`mvn package`) решается обновлением `maven-war-plugin`  
+- Ошибка при сборке (`mvn package`) решается обновлением `maven-war-plugin` (default версия этого плагина, который привязан к package, для новых JDK не подойдет)
 - Сделал создание коллекций через фабричные методы `List.of`
 - Как пример в `InMemoryMealRepository` использовал *local variable type inference* `var`.
   - [26 рекомендаций по использованию типа var в Java](https://habr.com/ru/post/438206/)
@@ -171,7 +167,7 @@
 - [Spring 3.1 новый механизм кеширования](https://russianblogs.com/article/75981527090/)
 - [Spring 4+ with Ehcache 3 – how to](https://imhoratiu.wordpress.com/2017/01/26/spring-4-with-ehcache-3-how-to/)
 - [Evict Ehcache elements programmatically, using Spring](https://stackoverflow.com/questions/29557959/evict-ehcache-elements-programmatically-using-spring)
-
+- Дополнительно: [Оптимизация запросов с использованием Spring cache и Bean scope](https://www.youtube.com/watch?v=P7nCQepVk_Y&list=PL6rimDLSyfe947bGsCviqIIYGofeFYQTM)
 --------------------
 
 ## ![hw](https://cloud.githubusercontent.com/assets/13649199/13672719/09593080-e6e7-11e5-81d1-5cb629c438ca.png) Домашнее задание HW05
@@ -181,7 +177,8 @@
 - 2: Разделить реализации Repository по профилям Spring: `jdbc`, `jpa`, `datajpa` (общее в профилях можно объединять, например, `<beans profile="datajpa,jpa">`).
   - 2.1: Профили выбора DB (`postgres/hsqldb`) и реализации репозитория (`jdbc/datajpa/jpa`) независимы друг от друга, и при запуске приложения (тестов) нужно задать тот, и другой.
   - 2.2: Удобно для интеграции с IDEA выставить в `spring-db.xml` справа вверху в `Change Profiles...` профили, например, `datajpa, postgres`. **Это влияет ТОЛЬКО на отображение в IDEA и НИКАК на работу приложения и тестов**
-  - 2.3: Общие части для всех в `spring-db.xml` можно оставить как есть без профилей вверху файла **(до первого `<beans profile=` !!!)**.
+  - 2.3: Общие части для всех в `spring-db.xml` можно оставить как есть без профилей вверху файла **(до первого `<beans profile=` !!!)**.   
+Профили делаем в `spring-db.xml` (это не Maven профили, pom.xml не меняем). Здесь мы конфигурируем бины, которые попадут в spring context. Профилями можно переключать, что попадет в context, что нет. Профилями Maven мы меняем в проекте подгружаемые зависимости. Если у вас в `spring-db.xml` что-то красное - значит этих классов нет в зависимостях, это НЕ ошибка. Spring о профилях в Maven НИКАК не догадывается: в IDEA нужно вручную наверху нужные профили задавать, в приложении и тестах - указывать, с какими профилями запускается приложение.
 - 3: Сделать тесты всех реализаций (`jdbc, jpa, datajpa`) через наследование (без дублирования).
   -  3.1 **сделать общий базовый класс для `MealServiceTest` и `UserServiceTest`**.
   -  3.2 сводку по времени выполнения тестов также сделать для `user`
@@ -204,7 +201,7 @@
 ---------------------
 ### ![error](https://cloud.githubusercontent.com/assets/13649199/13672935/ef09ec1e-e6e7-11e5-9f79-d1641c05cbe6.png) Типичные ошибки и подсказки по реализации
 - 1: Для того, чтобы не запускались родительские классы тестов, нужно сделать их `abstract`.
-- 2: В реализациях `JdbcMealRepository` **код не должен дублироваться**. Если вы возвращаете тип `Object`, посмотрите в сторону <a href="http://www.quizful.net/post/java-generics-tutorial">дженериков</a>.
+- 2: В реализациях `JdbcMealRepository` **код не должен дублироваться**. Если вы возвращаете тип `Object`, посмотрите в сторону <a href="https://web.archive.org/web/20201027090144/http://www.quizful.net/post/java-generics-tutorial">дженериков</a>.
 - 3: В `MealServlet/SpringMain` в момент `setActiveProfiles` контекст спринга еще не должен быть инициализирован, иначе выставление профиля уже ни на что не повлияет.
 Уметь пользоваться гугл для разработчика, это умение №1. Если застряли- попробуйте например слова: `spring context set profile`
 - 4: Если у метода нет реализации, то стандартно бросается `UnsupportedOperationException`. Для уменьшения количества кода при реализации _Optional_ (п. 7, только `DataJpa`) попробуйте сделать `default` метод в интерфейсе.

@@ -8,7 +8,8 @@
 ### ![correction](https://cloud.githubusercontent.com/assets/13649199/13672935/ef09ec1e-e6e7-11e5-9f79-d1641c05cbe6.png) Правки в проекте
 
 #### Apply 8_0_fix.patch
-Время еды приходит с UI с точностью до минут
+- Время еды приходит с UI с точностью до минут
+- Профили в `SpringMain` больше не нужны
 
 ## ![hw](https://cloud.githubusercontent.com/assets/13649199/13672719/09593080-e6e7-11e5-81d1-5cb629c438ca.png) Разбор домашнего задания HW7
 
@@ -505,7 +506,9 @@ https://bs-uploads.toptal.io/blackfish-uploads/uploaded_file/file/412345/image-1
 
 #### Apply 8_12_add_security.patch
 
-> Обновил все версии Spring модулей, не забудьте кнопку *Reload All Maven Projects* и `mvn clean` 
+> Обновил версии Spring и Spring Data JPA, не забудьте кнопку *Reload All Maven Projects* и `mvn clean`   
+> Недавно вышла новая версия Spring 6.0, Spring Data JPA 3.0. Они все используют пакет _jakarta_ и включены в недавний релиз Spring Boot 3.0.
+> В конце курса мы мигрируем наше приложение на последний Spring Boot 3.0   
 
 - <a href="http://projects.spring.io/spring-security/">Spring Security</a>
 - <a href="https://ru.wikipedia.org/wiki/Протокол_AAA">Протокол AAA</a>
@@ -578,3 +581,8 @@ https://bs-uploads.toptal.io/blackfish-uploads/uploaded_file/file/412345/image-1
 - 2: в `topjava.common.js` следует вынести только общие скрипты (cкрипты еды размещайте в  `topjava.meals.js`, пользователей - в `topjava.users.js`)
 - 3: если в контроллер приходит `null`, проверьте в `Network`-вкладке DevTools браузера, в каком формате приходят данные и в каком формате в контроллере вы их принимаете (`consumes`)
 - 4: при реализации `enable/disable` лучше явно указывать нужное состояние, чем переключать на противоположное. Если параллельно кто-то изменит состояние, то будет несоответствие UI и DB
+ - 5: Ошибка в браузере _DataTables warning: ... Requested unknown parameter ..._ может иметь несколько причин:
+   - названия столбца в конфигурации таблицы и поля в json ответе от REST контроллера не совпадают. Проверьте имя в конфигурации DataTable `"columns" [{"data": "..."}, ...` и JSON ответ контроллера 
+   - у вас неверный маппинг. При запросе по ajax данных для отрисовки `DataTables` должны приходить JSON данные таблицы, а у вас вместо JSON приходит ,нарпимер, HTML страничка с UI контроллера
+   - неверный формат даты - должен быть `DateTimeFormat.ISO.DATE_TIME` с "T" разделителем  
+**Смотрим ответ сервера во вкладке _Network_ браузера (F12->Network в Хроме)**  
