@@ -38,6 +38,8 @@ public abstract class AbstractControllerTest {
 
     private static final CharacterEncodingFilter CHARACTER_ENCODING_FILTER = new CharacterEncodingFilter();
 
+    private static final Locale RU_LOCALE = new Locale("ru");
+
     @Autowired
     protected MessageSourceAccessor messageSourceAccessor;
 
@@ -72,7 +74,7 @@ public abstract class AbstractControllerTest {
     }
 
     private String getMessage(String code) {
-        return messageSourceAccessor.getMessage(code, Locale.ENGLISH);
+        return messageSourceAccessor.getMessage(code, RU_LOCALE);
     }
 
     protected ResultMatcher errorType(ErrorType type) {
