@@ -1,0 +1,34 @@
+package ru.javawebinar.topjava.web.user;
+
+import org.springframework.util.StringUtils;
+import org.springframework.validation.Errors;
+import ru.javawebinar.topjava.HasIdAndMail;
+import ru.javawebinar.topjava.model.User;
+import ru.javawebinar.topjava.repository.UserRepository;
+import ru.javawebinar.topjava.web.ExceptionInfoHandler;
+
+public class UniqueMailValidator implements org.springframework.validation.Validator {
+
+    private final UserRepository repository;
+
+    public UniqueMailValidator(UserRepository repository) {
+        this.repository = repository;
+    }
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return HasIdAndMail.class.isAssignableFrom(clazz);
+    }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+        HasIdAndMail user = ((HasIdAndMail) target);
+        if (StringUtils.hasText(user.getEmail())) {
+            User dbUser = repository.getByEmail(user.getEmail().toLowerCase());
+            if (dbUser != null && !dbUser.getId().equals(user.getId())) {
+                errors.rejectValue("email", ExceptionInfoHandler.EXCEPTION_DUPLICATE_EMAIL);
+            }
+        }
+
+    }
+}
