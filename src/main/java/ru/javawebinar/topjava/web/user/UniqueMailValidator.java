@@ -1,6 +1,5 @@
 package ru.javawebinar.topjava.web.user;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
@@ -15,7 +14,7 @@ public class UniqueMailValidator implements Validator {
 
     private final UserRepository repository;
 
-    public UniqueMailValidator(@Qualifier("dataJpaUserRepository") UserRepository repository) {
+    public UniqueMailValidator(UserRepository repository) {
         this.repository = repository;
     }
 
