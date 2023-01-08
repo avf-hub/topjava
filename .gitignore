@@ -7,3 +7,4 @@ log
 *.patch
 hsqldb.properties
 postgres.properties
+db.properties
